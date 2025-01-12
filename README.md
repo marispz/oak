@@ -1,4 +1,3 @@
-
 # Nakama RPC Plugin Example
 
 This project demonstrates how to implement custom RPCs for the Nakama server using Go. It includes Docker configurations to build and run the necessary services and infrastructure for testing.
@@ -111,7 +110,8 @@ To run this project locally, you need to have the following installed:
 
 ## Running the Application
 
-Once the services are up, you can interact with the Nakama server and test the custom RPCs. The server will be available at `http://localhost:7350`.
+Once the services are up, you can interact with the Nakama server and test the custom RPCs. The server will be available at `http://localhost:7351`. The admin/password are the credentials.
+RPC Api calls can be accessed at `http://localhost:7350/v2/rpc/<rpc_name>`.
 
 To view logs for the Nakama server:
 
@@ -210,5 +210,3 @@ docker rm -f oak-nakama || true
 docker rmi -f oak-nakama-image:v1 || true
 docker rmi -f oak-nakama-image:latest || true
 ```
-
-### Invoking Custom RPCs
