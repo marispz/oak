@@ -1,0 +1,34 @@
+{
+  "welcome_message": "Welcome to Last Pagan Stronghold",
+  "xp_rate": 1.5,
+  "rarity": {
+    "common": {
+      "chance": 0.50,
+      "items": [
+        { "name": "Wooden Sword", "damage": 10, "durability": 100 },
+        { "name": "Leather Armor", "defense": 5, "durability": 100 }
+      ]
+    },
+    "uncommon": {
+      "chance": 0.30,
+      "items": [
+        { "name": "Iron Sword", "damage": 20, "durability": 150 },
+        { "name": "Iron Shield", "defense": 15, "durability": 150 }
+      ]
+    },
+    "rare": {
+      "chance": 0.15,
+      "items": [
+        { "name": "Steel Sword", "damage": 40, "durability": 250 },
+        { "name": "Dragon Shield", "defense": 30, "durability": 250 }
+      ]
+    },
+    "legendary": {
+      "chance": 0.05,
+      "items": [
+        { "name": "Excalibur", "damage": 100, "durability": 500, "special_ability": "Fires a shockwave" },
+        { "name": "Phoenix Armor", "defense": 60, "durability": 500, "special_ability": "Revives the player once per match" }
+      ]
+    }
+  }
+}
