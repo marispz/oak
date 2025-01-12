@@ -15,7 +15,7 @@ const (
 	rpcS2SReadGameStats                 = "read_game_stats"
 )
 
-func InitModule(ctx context.Context, logger runtime.Logger, db *sql.DB, nk runtime.NakamaModule, initializer runtime.Initializer) error {
+func InitModule(_ context.Context, logger runtime.Logger, _ *sql.DB, _ runtime.NakamaModule, initializer runtime.Initializer) error {
 	// Register RPCs
 	err := initializer.RegisterRpc(rpcUpdateAccountMetaData, rpc.UpdateAccountMetaData)
 	if err != nil {
@@ -38,7 +38,7 @@ func InitModule(ctx context.Context, logger runtime.Logger, db *sql.DB, nk runti
 		return err
 	}
 
-	// Register as after hook, this call should be in InitModule.
+	// Register after hooks.
 	if err := initializer.RegisterAfterAuthenticateDevice(hook.InitializeUser); err != nil {
 		logger.Error("Unable to register: %v", err)
 		return err
