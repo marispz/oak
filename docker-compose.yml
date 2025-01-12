@@ -26,6 +26,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: oak-nakama
+    platform: linux/amd64
     image: oak-nakama-image:latest
     depends_on:
       - postgres
