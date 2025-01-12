@@ -96,6 +96,7 @@ import (
 
 	"github.com/heroiclabs/nakama-common/api"
 	"github.com/heroiclabs/nakama-common/rtapi"
+	"github.com/redis/go-redis/v9"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -326,7 +327,7 @@ type Initializer interface {
 
 		If there is an issue with the RPC call, return an empty string and the associated error which will be returned to the client.
 	*/
-	RegisterRpc(id string, fn func(ctx context.Context, logger Logger, db *sql.DB, nk NakamaModule, payload string) (string, error)) error
+	RegisterRpc(id string, fn func(ctx context.Context, logger Logger, db *sql.DB, rc *redis.Client, nk NakamaModule, payload string) (string, error)) error
 
 	/*
 		RegisterBeforeRt registers a function with for a message. Any function may be registered to intercept a message received from a client and operate on it (or reject it) based on custom logic.

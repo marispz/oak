@@ -9,15 +9,9 @@ COPY . .
 
 RUN go build --trimpath --mod=vendor --buildmode=plugin -o ./backend.so
 
-FROM builder AS tester
 
-COPY --from=builder /backend /backend
-WORKDIR /backend
-RUN go test -v -coverprofile=coverage.out -cover ./...
-
-FROM oak-roots:v0.0.1
+FROM oak-roots:v1-redis
 #FROM heroiclabs/nakama:3.25.0
 
-COPY --from=tester  /backend/coverage.out .
 COPY --from=builder /backend/backend.so /nakama/data/modules/
 COPY --from=builder /backend/local.yml /nakama/data/

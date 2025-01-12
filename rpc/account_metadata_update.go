@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"encoding/json"
 	"github.com/heroiclabs/nakama-common/runtime"
+	"github.com/redis/go-redis/v9"
 	"oak/common"
 )
 
@@ -15,7 +16,7 @@ type (
 )
 
 // UpdateAccountMetaData updates the metadata of the user account
-func UpdateAccountMetaData(ctx context.Context, logger runtime.Logger, db *sql.DB, nk runtime.NakamaModule, payload string) (string, error) {
+func UpdateAccountMetaData(ctx context.Context, logger runtime.Logger, db *sql.DB, rc *redis.Client, nk runtime.NakamaModule, payload string) (string, error) {
 	logger.Debug("UpdateAccountMetaData RPC called")
 	// Get the user ID from the context
 	userID, ok := ctx.Value(runtime.RUNTIME_CTX_USER_ID).(string)
@@ -38,6 +39,12 @@ func UpdateAccountMetaData(ctx context.Context, logger runtime.Logger, db *sql.D
 	if err != nil {
 		logger.Error("Cannot unmarshal metadata: %+v", err)
 		return common.EmptyString, common.ErrUnMarshallingError
+	}
+
+	err = rc.Set(ctx, "metadata", payload, 0).Err()
+	if err != nil {
+		logger.Error("Cannot set metadata: %+v", err)
+		return common.EmptyString, common.ErrInternalError
 	}
 
 	// SQL statement to update the metadata

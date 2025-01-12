@@ -6,6 +6,7 @@ import (
 	_ "embed"
 	"encoding/json"
 	"github.com/heroiclabs/nakama-common/runtime"
+	"github.com/redis/go-redis/v9"
 	"oak/common"
 )
 
@@ -15,7 +16,7 @@ import (
 var gameConfigJSON []byte
 
 // ReadGameConfigurationFromFile reads the game configuration from the embedded JSON file.
-func ReadGameConfigurationFromFile(ctx context.Context, logger runtime.Logger, _ *sql.DB, _ runtime.NakamaModule, _ string) (string, error) {
+func ReadGameConfigurationFromFile(ctx context.Context, logger runtime.Logger, _ *sql.DB, _ *redis.Client, _ runtime.NakamaModule, _ string) (string, error) {
 	logger.Debug("ReturnGameConfigurationFromFile RPC called")
 
 	// Get the user ID from the context
@@ -29,7 +30,7 @@ func ReadGameConfigurationFromFile(ctx context.Context, logger runtime.Logger, _
 }
 
 // ReadGameConfigurationFromStorage reads the game configuration from the storage.
-func ReadGameConfigurationFromStorage(ctx context.Context, logger runtime.Logger, _ *sql.DB, nk runtime.NakamaModule, _ string) (string, error) {
+func ReadGameConfigurationFromStorage(ctx context.Context, logger runtime.Logger, _ *sql.DB, _ *redis.Client, nk runtime.NakamaModule, _ string) (string, error) {
 	logger.Debug("ReadGameConfigurationFromStorage RPC called")
 
 	// Get the user ID from the context
