@@ -26,6 +26,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: oak-nakama
+    platform: linux/amd64
     image: oak-nakama-image:latest
     depends_on:
       - postgres
@@ -50,7 +51,7 @@ services:
       - "7349:7349"
       - "7350:7350"
       - "7351:7351"
-    restart: unless-stopped
+    restart: no
 
 volumes:
   data:

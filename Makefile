@@ -19,7 +19,7 @@ build:
 	docker-compose build --no-cache
 
 # Run the Docker containers for the service
-start: build
+start:
 	docker-compose -f docker-compose.yml up -d
 
 status:
