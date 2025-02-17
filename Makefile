@@ -16,14 +16,14 @@ coverage: test
 
 # Build the Docker image for service to execute
 build:
-	docker-compose build --no-cache
+	docker compose build --no-cache
 
 # Run the Docker containers for the service
 start: build
-	docker-compose -f docker-compose.yml up -d
+	docker compose -f docker-compose.yml up -d
 
 status:
-	docker-compose -f docker-compose.yml ps
+	docker compose -f docker-compose.yml ps
 
 # Lists the available make commands
 list:
@@ -31,7 +31,7 @@ list:
 
 # Stop the Docker container
 stop:
-	docker-compose -f docker-compose.yml down
+	docker compose -f docker-compose.yml down
 
 # Check the logs of the Docker container
 logs:
